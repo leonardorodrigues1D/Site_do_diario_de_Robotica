@@ -1,31 +1,77 @@
-/**
- * Função para verificar a resposta de uma pergunta do quiz.
- * @param {number} numeroQuestao - O número da questão (ex: 1, 2, 3...).
- * @param {string} respostaCorreta - A alternativa correta (ex: 'a', 'b', 'c').
- */
-function verificarResposta(numeroQuestao, respostaCorreta) {
-    // 1. Seleciona o elemento de rádio (opção) que foi marcado pelo usuário para a questão específica.
-    // O `name` do input de rádio é usado para agrupar as opções de uma mesma pergunta (ex: name="q1").
-    const respostaUsuario = document.querySelector(`input[name="q${numeroQuestao}"]:checked`);
+let projects = JSON.parse(localStorage.getItem('projects')) || [];
 
-    // 2. Encontra o elemento <span> onde o resultado (certo/errado) será exibido.
-    // O ID desse span é construído dinamicamente (ex: "resultado1", "resultado2").
-    const elementoResultado = document.getElementById(`resultado${numeroQuestao}`);
+  if (!title || !description) return;
 
-    // 3. Verifica se o usuário realmente selecionou uma opção.
-    if (respostaUsuario) {
-        // 4. Compara o valor da opção selecionada ('a', 'b' ou 'c') com a resposta correta.
-        if (respostaUsuario.value === respostaCorreta) {
-            // Se estiver correto:
-            elementoResultado.textContent = "Correto!"; // Define o texto.
-            elementoResultado.className = "resultado correto"; // Aplica as classes de estilo (verde).
-        } else {
-            // Se estiver incorreto:
-            elementoResultado.textContent = "Incorreto!"; // Define o texto.
-            elementoResultado.className = "resultado incorreto"; // Aplica as classes de estilo (vermelho).
-        }
+  const existingImage = editIndex !== null ? projects[editIndex].image : null;
+
+  const reader = new FileReader();
+
+  reader.onload = function () {
+    const image = reader.result;
+    finalizeSave(image);
+  };
+
+  if (imageInput.files[0]) {
+    reader.readAsDataURL(imageInput.files[0]);
+  } else {
+    finalizeSave(existingImage);
+  }
+
+  function finalizeSave(image) {
+    const newProject = { title, description, date, progress, image };
+
+    if (editIndex !== null) {
+      projects[editIndex] = newProject;
+      editIndex = null;
     } else {
-        // 5. Se nenhuma opção foi marcada, avisa o usuário.
-        alert("Por favor, selecione uma opção antes de verificar.");
+      projects.push(newProject);
     }
+
+    localStorage.setItem('projects', JSON.stringify(projects));
+    renderProjects();
+    resetForm();
+    showToast();
+  }
 }
+
+function editProject(index) {
+  const proj = projects[index];
+
+  document.getElementById('title').value = proj.title;
+  document.getElementById('description').value = proj.description;
+  document.getElementById('date').value = proj.date;
+  document.getElementById('progress').value = proj.progress;
+
+  editIndex = index;
+  document.getElementById('formTitle').innerText = 'Editando Projeto';
+  document.getElementById('cancelBtn').style.display = 'block';
+}
+
+function cancelEdit() {
+  editIndex = null;
+  resetForm();
+}
+
+function deleteProject(index) {
+  projects.splice(index, 1);
+  localStorage.setItem('projects', JSON.stringify(projects));
+  renderProjects();
+}
+
+function resetForm() {
+  document.getElementById('title').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('date').value = '';
+  document.getElementById('progress').value = '';
+  document.getElementById('image').value = '';
+  document.getElementById('formTitle').innerText = 'Novo Projeto';
+  document.getElementById('cancelBtn').style.display = 'none';
+}
+
+function showToast() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+renderProjects();

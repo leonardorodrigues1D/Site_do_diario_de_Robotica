@@ -1,121 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Configurações básicas e metatags para acessibilidade e responsividade -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Vincula o arquivo CSS para estilização do site -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Pré-conexão para carregar fontes do Google de forma mais rápida -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Fonte "Chakra Petch" do Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
-        
-    <!-- Título da página atualizado para o tema -->
-    <title>A Crise Invisível nos Oceanos</title>
 </head>
-
 <body>
-    <!-- Cabeçalho principal do site -->
-    <header>Tecnologia e Ação para um Oceano Limpo</header>
+  <script src="style.css"></script>
+  <header>
+    <h1>🤖 Diário de Projetos de Robótica</h1>
+    <p>Registre, acompanhe e evolua seus projetos</p>
+  </header>
 
-    <!-- Seção principal que agrupa todo o conteúdo do projeto -->
-    <section class="chamada">
-        
-        <div class="chamada-texto">
-            <!-- Texto Introdutório -->
-            <h1>A Crise Invisível: Plásticos e Microplásticos nos Oceanos</h1>
-            <p>Estima-se que entre 15 e 51 bilhões de peças de plástico estejam flutuando em nossos oceanos, presentes em todas as regiões do planeta. Mais de 5,25 trilhões de fragmentos plásticos, incluindo 4 bilhões de microfibras por km² abaixo da superfície, ameaçam ecossistemas marinhos e se infiltram na cadeia alimentar humana.</p>
+  <main>
+    <section class="form-section">
+      <h2 id="formTitle">Novo Projeto</h2>
+      <input type="text" id="title" placeholder="Nome do projeto">
+      <textarea id="description" placeholder="Descreva o projeto..."></textarea>
 
-            <!-- Quiz Interativo sobre o Tema -->
-            <h2>Vamos testar os seus Conhecimentos</h2>
-            <div class="quiz-container">
-                <!-- Pergunta 1 -->
-                <div class="pergunta">
-                    <p>1. Qual tecnologia é usada para mapear as áreas de maior concentração de lixo nos oceanos?</p>
-                    <div class="opcoes">
-                        <label><input type="radio" name="q1" value="a"> a) Satélites meteorológicos</label>
-                        <label><input type="radio" name="q1" value="b"> b) Drones com Inteligência Artificial</label>
-                        <label><input type="radio" name="q1" value="c"> c) Sonar de navios de pesca</label>
-                    </div>
-                    <button class="botao-verificar" onclick="verificarResposta(1, 'b')">Verificar</button>
-                    <span id="resultado1" class="resultado"></span>
-                </div>
+      <label>Data:</label>
+      <input type="date" id="date">
 
-                <!-- Pergunta 2 -->
-                <div class="pergunta">
-                    <p>2. Onde as "Barreiras Flutuantes Inteligentes" são instaladas para maior eficácia?</p>
-                    <div class="opcoes">
-                        <label><input type="radio" name="q2" value="a"> a) Em alto-mar</label>
-                        <label><input type="radio" name="q2" value="b"> b) Na costa das praias</label>
-                        <label><input type="radio" name="q2" value="c"> c) Em rios, antes de chegarem ao mar</label>
-                    </div>
-                    <button class="botao-verificar" onclick="verificarResposta(2, 'c')">Verificar</button>
-                    <span id="resultado2" class="resultado"></span>
-                </div>
+      <label>Progresso (%):</label>
+      <input type="number" id="progress" min="0" max="100" placeholder="Ex: 50">
 
-                <!-- Pergunta 3 -->
-                <div class="pergunta">
-                    <p>3. Qual a principal fonte de energia dos Navios Coletores Autônomos?</p>
-                    <div class="opcoes">
-                        <label><input type="radio" name="q3" value="a"> a) Energia solar</label>
-                        <label><input type="radio" name="q3" value="b"> b) Diesel</label>
-                        <label><input type="radio" name="q3" value="c"> c) Energia nuclear</label>
-                    </div>
-                    <button class="botao-verificar" onclick="verificarResposta(3, 'a')">Verificar</button>
-                    <span id="resultado3" class="resultado"></span>
-                </div>
+      <label>Imagem:</label>
+      <input type="file" id="image" accept="image/*">
 
-                <!-- Pergunta 4 -->
-                <div class="pergunta">
-                    <p>4. Qual profissional é essencial para garantir que as operações de limpeza não prejudiquem a fauna marinha?</p>
-                    <div class="opcoes">
-                        <label><input type="radio" name="q4" value="a"> a) Engenheiro de Software</label>
-                        <label><input type="radio" name="q4" value="b"> b) Gerente de Projetos</label>
-                        <label><input type="radio" name="q4" value="c"> c) Biólogo Marinho</label>
-                    </div>
-                    <button class="botao-verificar" onclick="verificarResposta(4, 'c')">Verificar</button>
-                    <span id="resultado4" class="resultado"></span>
-                </div>
-
-                <!-- Pergunta 5 -->
-                <div class="pergunta">
-                    <p>5. A abordagem do projeto "Sentinela dos Mares" atua em quais frentes?</p>
-                    <div class="opcoes">
-                        <label><input type="radio" name="q5" value="a"> a) Apenas na prevenção em rios</label>
-                        <label><input type="radio" name="q5" value="b"> b) Apenas na remediação em oceanos</label>
-                        <label><input type="radio" name="q5" value="c"> c) Tanto na prevenção (rios) quanto na remediação (oceanos)</label>
-                    </div>
-                    <button class="botao-verificar" onclick="verificarResposta(5, 'c')">Verificar</button>
-                    <span id="resultado5" class="resultado"></span>
-                </div>
-            </div>
-
-            <!-- Solução Tecnológica -->
-            <h2>Nossa Solução Tecnológica: Sentinela dos Mares</h2>
-            <p>Nossa solução é um sistema integrado e autônomo de limpeza oceânica composto por Drones de Mapeamento, Barreiras Flutuantes Inteligentes e Navios Coletores Autônomos.</p>
-            
-            <!-- Profissionais Envolvidos -->
-            <h2>Profissionais Envolvidos na Solução</h2>
-            <p>Para enfrentar este desafio, uma vasta gama de especialistas é necessária para desenvolver e implementar soluções eficazes:</p>
-            <ul>
-                <li><strong>Engenheiros (Navais, Mecânicos, de Materiais):</strong> Projetam as tecnologias de coleta e desenvolvem novos materiais a partir do plástico reciclado.</li>
-                <li><strong>Cientistas de Dados e Oceanógrafos:</strong> Modelam as correntes oceânicas para prever onde o lixo se acumula.</li>
-                <li><strong>Biólogos Marinhos e Ecologistas:</strong> Estudam o impacto do plástico na vida marinha e garantem a segurança dos ecossistemas.</li>
-                <li><strong>Especialistas em Políticas Públicas:</strong> Criam legislações para reduzir o uso de plásticos.</li>
-                <li><strong>Empreendedores e Inovadores:</strong> Criam startups com novas tecnologias para a saúde dos oceanos.</li>
-                <li><strong>Profissionais de Comunicação:</strong> Conscientizam o público global sobre o problema.</li>
-            </ul>
-        </div>
+      <button onclick="saveProject()">Salvar</button>
+      <button id="cancelBtn" onclick="cancelEdit()" style="display:none; margin-top:8px; background:#64748b;">Cancelar edição</button>
     </section>
 
-    <!-- Link para o arquivo JavaScript -->
-    <script src="script.js"></script>
+    <section class="projects">
+      <h2>Projetos</h2>
+      <div id="projectList"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">✔ Projeto salvo!</div>
+
+  <footer>
+    <p>🚀 Pronto para GitHub Pages</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
