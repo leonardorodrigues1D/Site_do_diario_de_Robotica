@@ -1,0 +1,4 @@
+{
+    "testing.alwaysRevealTestOnStateChange": true,
+    "testing.automaticallyOpenPeekViewDuringAutoRun": true
+}
