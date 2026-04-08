@@ -1,42 +1,57 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #0f172a;
-  color: #e2e8f0;
+
+.project-card {
+  background: #334155;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  animation: fadeIn 0.4s ease;
 }
 
-header {
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  background: #1e293b;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress {
+  height: 10px;
+  background: #22c55e;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #22c55e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   background: #1e293b;
 }
 
-main {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-}
-
-.form-section, .projects {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-input, textarea {
-  width: 100%;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background: #38bdf8;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}

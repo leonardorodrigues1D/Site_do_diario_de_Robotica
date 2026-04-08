@@ -1,16 +1,4 @@
 let projects = JSON.parse(localStorage.getItem('projects')) || [];
-
-  if (!title || !description) return;
-
-  const existingImage = editIndex !== null ? projects[editIndex].image : null;
-
-  const reader = new FileReader();
-
-  reader.onload = function () {
-    const image = reader.result;
-    finalizeSave(image);
-  };
-
   if (imageInput.files[0]) {
     reader.readAsDataURL(imageInput.files[0]);
   } else {
