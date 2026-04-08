@@ -1,40 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diário de Robótica</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <h1>🤖 Diário de Projetos de Robótica</h1>
-    <p>Registre, acompanhe e evolua seus projetos</p>
+    <h1>🤖 Diário de Robótica</h1>
+    <p>Registre seus projetos e ideias</p>
   </header>
 
   <main>
-    <section class="form-section">
-      <h2 id="formTitle">Novo Projeto</h2>
-      <input type="text" id="title" placeholder="Nome do projeto">
-      <textarea id="description" placeholder="Descreva o projeto..."></textarea>
-
-      <label>Data:</label>
-      <input type="date" id="date">
-
-      <label>Progresso (%):</label>
-      <input type="number" id="progress" min="0" max="100">
-
-      <label>Imagem:</label>
-      <input type="file" id="image" accept="image/*">
-
-      <button onclick="saveProject()">Salvar</button>
-      <button id="cancelBtn" onclick="cancelEdit()" style="display:none;">Cancelar edição</button>
+    <section class="form">
+      <input type="text" id="titulo" placeholder="Nome do projeto">
+      <textarea id="descricao" placeholder="Descrição do projeto"></textarea>
+      <button onclick="adicionarProjeto()">Adicionar Projeto</button>
     </section>
 
-    <section class="projects">
-      <h2>Projetos</h2>
-      <div id="projectList"></div>
+    <section>
+      <h2>📂 Meus Projetos</h2>
+      <div id="lista-projetos"></div>
     </section>
   </main>
-
-  <div id="toast" class="toast">✔ Projeto salvo!</div>
-
-  <footer>
-    <p>🚀 Pronto para GitHub Pages</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>

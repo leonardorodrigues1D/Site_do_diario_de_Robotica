@@ -1,111 +1,45 @@
-let projects = JSON.parse(localStorage.getItem('projects')) || [];
-let editIndex = null;
+let projetos = JSON.parse(localStorage.getItem("projetos")) || [];
 
-function renderProjects() {
-  const list = document.getElementById('projectList');
-  list.innerHTML = '';
+function salvarProjetos() {
+  localStorage.setItem("projetos", JSON.stringify(projetos));
+}
 
-  projects.forEach((proj, index) => {
-    const div = document.createElement('div');
-    div.classList.add('project-card');
+function adicionarProjeto() {
+  const titulo = document.getElementById("titulo").value;
+  const descricao = document.getElementById("descricao").value;
 
-    div.innerHTML = `
-      <h3>${proj.title}</h3>
-      <p>${proj.description}</p>
-      <p>📅 ${proj.date || 'Sem data'}</p>
+  if (titulo === "" || descricao === "") {
+    alert("Preencha todos os campos!");
+    return;
+  }
 
-      <div class="progress-bar">
-        <div class="progress" style="width:${proj.progress || 0}%"></div>
+  projetos.push({ titulo, descricao });
+  salvarProjetos();
+  renderizarProjetos();
+
+  document.getElementById("titulo").value = "";
+  document.getElementById("descricao").value = "";
+}
+
+function excluirProjeto(index) {
+  projetos.splice(index, 1);
+  salvarProjetos();
+  renderizarProjetos();
+}
+
+function renderizarProjetos() {
+  const lista = document.getElementById("lista-projetos");
+  lista.innerHTML = "";
+
+  projetos.forEach((projeto, index) => {
+    lista.innerHTML += `
+      <div class="projeto">
+        <h3>${projeto.titulo}</h3>
+        <p>${projeto.descricao}</p>
+        <button class="excluir" onclick="excluirProjeto(${index})">Excluir</button>
       </div>
-
-      ${proj.image ? `<img src="${proj.image}">` : ''}
-
-      <button onclick="editProject(${index})">Editar</button>
-      <button onclick="deleteProject(${index})">Excluir</button>
     `;
-
-    list.appendChild(div);
   });
 }
 
-function saveProject() {
-  const title = document.getElementById('title').value;
-  const description = document.getElementById('description').value;
-  const date = document.getElementById('date').value;
-  const progress = document.getElementById('progress').value;
-  const imageInput = document.getElementById('image');
-
-  if (!title || !description) return;
-
-  const existingImage = editIndex !== null ? projects[editIndex].image : null;
-
-  const reader = new FileReader();
-
-  reader.onload = function () {
-    finalizeSave(reader.result);
-  };
-
-  if (imageInput.files[0]) {
-    reader.readAsDataURL(imageInput.files[0]);
-  } else {
-    finalizeSave(existingImage);
-  }
-
-  function finalizeSave(image) {
-    const newProject = { title, description, date, progress, image };
-
-    if (editIndex !== null) {
-      projects[editIndex] = newProject;
-      editIndex = null;
-    } else {
-      projects.push(newProject);
-    }
-
-    localStorage.setItem('projects', JSON.stringify(projects));
-    renderProjects();
-    resetForm();
-    showToast();
-  }
-}
-
-function editProject(index) {
-  const proj = projects[index];
-
-  document.getElementById('title').value = proj.title;
-  document.getElementById('description').value = proj.description;
-  document.getElementById('date').value = proj.date;
-  document.getElementById('progress').value = proj.progress;
-
-  editIndex = index;
-  document.getElementById('formTitle').innerText = 'Editando Projeto';
-  document.getElementById('cancelBtn').style.display = 'block';
-}
-
-function cancelEdit() {
-  editIndex = null;
-  resetForm();
-}
-
-function deleteProject(index) {
-  projects.splice(index, 1);
-  localStorage.setItem('projects', JSON.stringify(projects));
-  renderProjects();
-}
-
-function resetForm() {
-  document.getElementById('title').value = '';
-  document.getElementById('description').value = '';
-  document.getElementById('date').value = '';
-  document.getElementById('progress').value = '';
-  document.getElementById('image').value = '';
-  document.getElementById('formTitle').innerText = 'Novo Projeto';
-  document.getElementById('cancelBtn').style.display = 'none';
-}
-
-function showToast() {
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
-}
-
-renderProjects();
+renderizarProjetos();
