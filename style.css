@@ -1,0 +1,143 @@
+/* Configurações gerais do documento e fonte */
+body {
+    background-color: #0609c4; 
+    color: #e0e0e0; 
+    font-family: 'Chakra Petch', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilização do cabeçalho */
+header {
+    background-color: #031686; 
+    padding: 20px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #a4c9b3; 
+    border-bottom: 3px solid #00b7ff;
+}
+
+/* Seção de destaque principal */
+.chamada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.chamada-texto {
+    max-width: 800px;
+}
+
+/* Estilos para o container do Quiz */
+.quiz-container {
+    background-color: rgba(3, 22, 134, 0.5);
+    border-left: 4px solid #00b7ff;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.pergunta {
+    margin-bottom: 25px;
+}
+
+.pergunta p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.opcoes label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.opcoes input {
+    margin-right: 10px;
+}
+
+.botao-verificar {
+    background-color: #00b7ff;
+    color: #031686;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.botao-verificar:hover {
+    background-color: #a4c9b3;
+}
+
+.resultado {
+    margin-left: 15px;
+    font-weight: 700;
+}
+
+/* Classes para o resultado */
+.correto {
+    color: #4CAF50; /* Verde */
+}
+
+.incorreto {
+    color: #F44336; /* Vermelho */
+}
+
+/* Estilos para a lista de profissionais */
+.chamada-texto ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+}
+
+.chamada-texto li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+
+.chamada-texto h1, .chamada-texto h2, .chamada-texto h3 {
+    color: #a4c9b3;
+    text-align: center;
+}
+
+.chamada-texto h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.chamada-texto h2 {
+    margin-top: 40px;
+}
+
+.chamada-texto p {
+    font-size: 1.2rem;
+    color: #d1e8d9;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.8rem;
+    }
+    .chamada-texto h1 {
+        font-size: 2rem;
+    }
+    .chamada-texto p {
+        font-size: 1rem;
+    }
+}
